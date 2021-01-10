@@ -18,7 +18,7 @@ class InterfaceRenderer:
             code_box.insert(tk.END, "Input JavaScript Code Here...")
 
     def render_window(self):
-        self.root.iconbitmap("favicon.ico")
+        self.root.iconbitmap("view/favicon.ico")
         self.root.title("Chrispy Code Style Checker")
         self.root.resizable(False, False)
         self.root.configure(bg=self.primary_bg_colour, padx=10, pady=10)
@@ -53,5 +53,3 @@ class InterfaceRenderer:
         self.render_validate_button()
         self.render_output_box()
         self.root.mainloop()
-
-InterfaceRenderer().render_interface()
