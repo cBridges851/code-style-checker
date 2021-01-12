@@ -30,7 +30,7 @@ class InterfaceRenderer:
 
     def render_code_input_box(self):
         code_box = ScrolledText(self.root)
-        code_box.configure(width=self.box_width, height=15, bg=self.secondary_bg_colour, fg="#c2c0c0", font=("Consolas 14"))
+        code_box.configure(width=self.box_width, height=15, bg=self.secondary_bg_colour, fg="#C2C0C0", font=("Consolas 14"))
         self.insert_placeholder(code_box)
         code_box.bind("<Button 1>", lambda event: self.clear_code_box(code_box))
         code_box.bind("<FocusOut>", lambda event: self.insert_placeholder(code_box))
