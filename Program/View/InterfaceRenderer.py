@@ -123,7 +123,7 @@ class InterfaceRenderer:
             width=41, 
             font=("Helvetica 14"), 
             bg="#7A7A7A",
-            command=lambda: self.output_results()
+            command= self.output_results
         )
         self.validate_button.grid(row=2, column=0, pady=10)
 
