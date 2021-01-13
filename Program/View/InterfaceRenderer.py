@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from Validators.EqualsSpaceMissingValidator import EqualsSpaceMissingValidator
+from Validators.ValidatorRunner import ValidatorRunner
 
 class InterfaceRenderer:
     """
@@ -46,9 +46,9 @@ class InterfaceRenderer:
         self.output_box.delete("1.0", tk.END)
         code_box_text = self.code_box.get("1.0", tk.END)
         code_box_lines = code_box_text.split("\n")
-        equals_space_missing_validator = EqualsSpaceMissingValidator().validate(code_box_lines)
+        validator_results = ValidatorRunner().run_validators(code_box_lines)
 
-        if len(equals_space_missing_validator) == 0:
+        if len(validator_results) == 0:
             # No errors
             self.output_box.configure(bg="#004512")
             self.output_box.insert(tk.END, "There are no style errors in the code!")
@@ -56,15 +56,19 @@ class InterfaceRenderer:
             # 1 or more errors
             self.output_box.configure(bg="#450000")
 
-            if len(equals_space_missing_validator) == 1:
+            if validator_results["error_count"] == 1:
                 starting_error_message = "There is 1 style error in this code: \n\n"
             else:
-                starting_error_message = f"There are {len(equals_space_missing_validator)} style errors in this code: \n\n"
+                starting_error_message = f"There are {validator_results['error_count']} style errors in this code: \n\n"
             
             self.output_box.insert(tk.END, starting_error_message)
 
-            for error in equals_space_missing_validator:
-                self.output_box.insert(tk.END, f"{error}\n")
+            for category in validator_results["errors"]:
+                for error in category:
+                    self.output_box.insert(tk.END, f"{error}\n")
+                
+                if len(category) != 0:
+                    self.output_box.insert(tk.END, "\n")
 
         # User cannot edit the output box after the message has been inserted
         self.output_box.configure(state="disabled")
