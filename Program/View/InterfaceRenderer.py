@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from Validators.OperatorSpacingValidator import OperatorSpacingValidator
+from Validators.EqualsSpaceMissingValidator import EqualsSpaceMissingValidator
 
 class InterfaceRenderer:
     """
@@ -45,18 +45,25 @@ class InterfaceRenderer:
         self.output_box.delete("1.0", tk.END)
         code_box_text = self.code_box.get("1.0", tk.END)
         code_box_lines = code_box_text.split("\n")
-        operatorSpacingValidator = OperatorSpacingValidator().validate(code_box_lines)
+        equals_space_missing_validator = EqualsSpaceMissingValidator().validate(code_box_lines)
 
-        if len(operatorSpacingValidator) == 0:
+        if len(equals_space_missing_validator) == 0:
             self.output_box.configure(bg="#004512")
             self.output_box.insert(tk.END, "There are no style errors in the code!")
         else:
             self.output_box.configure(bg="#450000")
-            self.output_box.insert(tk.END, f"There are {len(operatorSpacingValidator)} style errors in this code: \n")
-            for error in operatorSpacingValidator:
+
+            if len(equals_space_missing_validator) == 1:
+                starting_error_message = "There is 1 style error in this code: \n\n"
+            else:
+                starting_error_message = f"There are {len(equals_space_missing_validator)} style errors in this code: \n\n"
+            
+            self.output_box.insert(tk.END, starting_error_message)
+
+            for error in equals_space_missing_validator:
                 self.output_box.insert(tk.END, f"{error}\n")
 
-        # User cannot edit the output box after the message has been inseted
+        # User cannot edit the output box after the message has been inserted
         self.output_box.configure(state="disabled")
 
     def render_window(self):
