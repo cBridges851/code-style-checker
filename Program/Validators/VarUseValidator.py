@@ -9,10 +9,10 @@ class VarUseValidator:
             if len(re.findall(var_regex, line)) != 0:
                 if len(re.findall(var_regex, line)) == 1:
                     error_list.append("Var Error: 1 occurrence of the use of var on line" 
-                    + f" {lines.index(line)}. Use let or const.")
+                    + f" {lines.index(line) + 1}. Use let or const.")
                 else:
                     error_list.append(f"Var Error: {len(re.findall(var_regex, line))}"
                     + " occurrences of the use of var on line" 
-                    + f" {lines.index(line)}. Use let or const.")
+                    + f" {lines.index(line) + 1}. Use let or const.")
 
         return error_list
