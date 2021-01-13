@@ -18,6 +18,7 @@ class InterfaceRenderer:
         self.output_box = ScrolledText(self.root)
         self.primary_bg_colour = "#1D1D1D"
         self.secondary_bg_colour = "#2D2D2D"
+        self.box_font_colour = "#C2C0C0"
         self.box_width = 50
         self.box_font = ("Consolas 14")
 
@@ -48,9 +49,11 @@ class InterfaceRenderer:
         equals_space_missing_validator = EqualsSpaceMissingValidator().validate(code_box_lines)
 
         if len(equals_space_missing_validator) == 0:
+            # No errors
             self.output_box.configure(bg="#004512")
             self.output_box.insert(tk.END, "There are no style errors in the code!")
         else:
+            # 1 or more errors
             self.output_box.configure(bg="#450000")
 
             if len(equals_space_missing_validator) == 1:
@@ -99,7 +102,7 @@ class InterfaceRenderer:
             width=self.box_width,
             height=15,
             bg=self.secondary_bg_colour,
-            fg="#C2C0C0", 
+            fg=self.box_font_colour, 
             font=self.box_font
         )
         self.insert_placeholder()
@@ -135,7 +138,7 @@ class InterfaceRenderer:
             width=self.box_width,
             height=7,
             bg=self.secondary_bg_colour,
-            fg="#C2C0C0",
+            fg=self.box_font_colour,
             state="disabled",
             font=self.box_font,
             wrap="word"
