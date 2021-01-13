@@ -40,7 +40,24 @@ class InterfaceRenderer:
             self.code_box.insert(tk.END, "Input JavaScript Code Here...")
     
     def output_results(self):
-        print("Hello")
+        # Allow the output box to be edited
+        self.output_box.configure(state="normal")
+        self.output_box.delete("1.0", tk.END)
+        code_box_text = self.code_box.get("1.0", tk.END)
+        code_box_lines = code_box_text.split("\n")
+        operatorSpacingValidator = OperatorSpacingValidator().validate(code_box_lines)
+
+        if len(operatorSpacingValidator) == 0:
+            self.output_box.configure(bg="#004512")
+            self.output_box.insert(tk.END, "There are no style errors in the code!")
+        else:
+            self.output_box.configure(bg="#450000")
+            self.output_box.insert(tk.END, f"There are {len(operatorSpacingValidator)} style errors in this code: \n")
+            for error in operatorSpacingValidator:
+                self.output_box.insert(tk.END, f"{error}\n")
+
+        # User cannot edit the output box after the message has been inseted
+        self.output_box.configure(state="disabled")
 
     def render_window(self):
         """
@@ -75,7 +92,8 @@ class InterfaceRenderer:
             width=self.box_width,
             height=15,
             bg=self.secondary_bg_colour,
-            fg="#C2C0C0", font=self.box_font
+            fg="#C2C0C0", 
+            font=self.box_font
         )
         self.insert_placeholder()
         self.code_box.bind(
@@ -110,8 +128,10 @@ class InterfaceRenderer:
             width=self.box_width,
             height=7,
             bg=self.secondary_bg_colour,
+            fg="#C2C0C0",
             state="disabled",
-            font=self.box_font
+            font=self.box_font,
+            wrap="word"
         )
         self.output_box.grid(row=3, column=0)
 
