@@ -48,7 +48,7 @@ class InterfaceRenderer:
         code_box_lines = code_box_text.split("\n")
         validator_results = ValidatorRunner().run_validators(code_box_lines)
 
-        if len(validator_results) == 0:
+        if validator_results["error_count"] == 0:
             # No errors
             self.output_box.configure(bg="#004512")
             self.output_box.insert(tk.END, "There are no style errors in the code!")
