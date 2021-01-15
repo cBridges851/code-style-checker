@@ -1,7 +1,19 @@
 import re
 
 class EqualsSpaceMissingValidator:
+    """
+        The validator that is used to check for missing spaces on the left 
+        and right of equals signs.
+    """
     def validate(self, lines):
+        """
+            The method that validates the code.
+            Args:
+                lines: list, all the lines of code to check
+            Returns:
+                error_list: list, all of the errors that have been found for 
+                                    this validator.
+        """
         error_list = []
 
         for line in lines:
