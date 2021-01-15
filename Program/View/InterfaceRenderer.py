@@ -63,7 +63,7 @@ class InterfaceRenderer:
             
             self.output_box.insert(tk.END, starting_error_message)
 
-            for category in validator_results["errors"]:
+            for category in validator_results["error_list"]:
                 for error in category:
                     self.output_box.insert(tk.END, f"{error}\n")
                 

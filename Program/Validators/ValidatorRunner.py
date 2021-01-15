@@ -16,7 +16,7 @@ class ValidatorRunner:
                                     how many there are.
         """
         error_dictionary = {
-            "errors": [],
+            "error_list": [],
             "error_count": 0
         }
         validators = [
@@ -26,7 +26,7 @@ class ValidatorRunner:
 
         for validator in validators:
             validator_results = validator.validate(code_box_lines)
-            error_dictionary["errors"].append(validator_results)
-            error_dictionary["error_count"] += len(validator_results)
+            error_dictionary["error_list"].append(validator_results["error_list"])
+            error_dictionary["error_count"] += validator_results["error_count"]
 
         return(error_dictionary)
