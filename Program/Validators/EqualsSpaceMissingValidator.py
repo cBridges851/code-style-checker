@@ -11,7 +11,7 @@ class EqualsSpaceMissingValidator:
             Args:
                 lines: list, all the lines of code to check
             Returns:
-                error_list: dictionary, all of the errors that have been found for 
+                error_dictionary: dictionary, all of the errors that have been found for 
                                     this validator and how many.
         """
         error_dictionary = {
