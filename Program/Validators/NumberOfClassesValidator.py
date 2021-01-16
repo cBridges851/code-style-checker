@@ -21,20 +21,29 @@ class NumberOfClassesValidator:
             "error_count": 0
         }
         
-        class_regex = "class\\b"
+        class_regex = "(?<=class )[A-Za-z]+"
         line_number = 0
         number_of_classes = 0
 
         for line in lines:
+            classes_on_line = re.findall(class_regex, line)
             line_number += 1
 
-            if len(re.findall(class_regex, line)) != 0:
+            if len(classes_on_line) != 0:
                 number_of_classes += 1
 
-                if number_of_classes > 1:
-                    error_dictionary["error_count"] += 1
-                    error_dictionary["error_list"] \
-                    .append("Class Quantity Error: Move the class starting"
-                    + f" on line {line_number} to its own file.")
+                if len(classes_on_line) == 1:
+                    if number_of_classes > 1:
+                        error_dictionary["error_count"] += 1
+                        error_dictionary["error_list"] \
+                        .append(f"Class Quantity Error: Move the"
+                        + f" {classes_on_line[0]} class to its own file.")
+                else:
+                    for i in range(1, len(classes_on_line)):
+                        error_dictionary["error_list"] \
+                            .append(f"Class Quantity Error: Move the" 
+                            + f" {classes_on_line[i]} class to its own file.")
+
+                    error_dictionary["error_count"] += len(classes_on_line) - 1
         
         return error_dictionary
