@@ -3,7 +3,8 @@ import re
 
 class EndOfSignatureSpaceValidator:
     """
-        The validator that is used to check for occurrences of 'var'.
+        The validator that is used to check that there is a space between a 
+        word or ) and {.
     """
 
     def validate(self, lines):
