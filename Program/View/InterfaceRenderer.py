@@ -41,6 +41,9 @@ class InterfaceRenderer:
             self.code_box.insert(tk.END, "Input JavaScript Code Here...")
     
     def output_results(self):
+        """
+            Outputs the results of the validators onto the output box.
+        """
         # Allow the output box to be edited
         self.output_box.configure(state="normal")
         self.output_box.delete("1.0", tk.END)

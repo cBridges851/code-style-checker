@@ -10,10 +10,10 @@ class ValidatorRunner:
             Runs the validators.
             Args: 
                 code_box_lines: list, all the lines that are in the box 
-                                    where the user inputs code.
+                where the user inputs code.
             Returns:
                 error_dictionary: dictionary, contains the errors and 
-                                    how many there are.
+                how many there are.
         """
         error_dictionary = {
             "error_list": [],
