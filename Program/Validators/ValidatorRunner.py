@@ -1,6 +1,6 @@
 from Validators.EqualsSpaceMissingValidator import EqualsSpaceMissingValidator
 from Validators.VarUseValidator import VarUseValidator
-
+from Validators.NumberOfClassesValidator import NumberOfClassesValidator
 class ValidatorRunner:
     """
         The class that is responsible for running all the validators.
@@ -21,7 +21,8 @@ class ValidatorRunner:
         }
         validators = [
             EqualsSpaceMissingValidator(),
-            VarUseValidator()
+            VarUseValidator(),
+            NumberOfClassesValidator()
         ]
 
         for validator in validators:

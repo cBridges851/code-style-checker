@@ -17,18 +17,22 @@ class VarUseValidator:
             "error_list": [],
             "error_count": 0
         }
+
         var_regex = "var\\b"
+        line_number = 0
 
         for line in lines:
+            line_number += 1
+
             if len(re.findall(var_regex, line)) != 0:
                 if len(re.findall(var_regex, line)) == 1:
                     error_dictionary["error_list"].append("Var Error: 1 occurrence of the use of var on line" 
-                    + f" {lines.index(line) + 1}. Use let or const.")
+                    + f" {line_number}. Use let or const.")
                     error_dictionary["error_count"] += 1
                 else:
                     error_dictionary["error_list"].append(f"Var Error: {len(re.findall(var_regex, line))}"
                     + " occurrences of the use of var on line" 
-                    + f" {lines.index(line) + 1}. Use let or const.")
+                    + f" {line_number}. Use let or const.")
                     error_dictionary["error_count"] += len(re.findall(var_regex, line))
 
         return error_dictionary

@@ -19,17 +19,21 @@ class EqualsSpaceMissingValidator:
             "error_count": 0
         }
 
+        line_number = 0
+
         for line in lines:
+            line_number += 1
+
             if len(re.findall("[^ =]=", line)) != 0:
                 error_dictionary["error_count"] += len(re.findall("[^ =]=", line))
                 for occurence in re.findall("[^ =]=", line):
                     error_dictionary["error_list"].append(f"Equals Sign Space Missing Error: {occurence}"
-                    + f" on line {lines.index(line) + 1} needs a space on the left of the =.")
+                    + f" on line {line_number} needs a space on the left of the =.")
 
             if len(re.findall("=[^ =]", line)) != 0:
                 error_dictionary["error_count"] += len(re.findall("=[^ =]", line))
                 for occurence in re.findall("=[^ =]", line):
                     error_dictionary["error_list"].append(f"Equals Sign Space Missing Error: {occurence}"
-                    + f" on line {lines.index(line) + 1} needs a space on the right of the =.")
+                    + f" on line {line_number} needs a space on the right of the =.")
 
         return error_dictionary
