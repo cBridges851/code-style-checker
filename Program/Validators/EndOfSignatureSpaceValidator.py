@@ -47,7 +47,7 @@ class EndOfSignatureSpaceValidator:
                     error_dictionary["error_list"] \
                         .append("End Of Signature Error: A space is needed"
                                 + " between the word and {"
-                                + f" in {word_end_entry}")
+                                + f" in '{word_end_entry}'")
 
                 error_dictionary["error_count"] += len(word_end_on_line)
 
