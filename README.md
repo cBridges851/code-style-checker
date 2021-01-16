@@ -4,7 +4,7 @@ This is my final project for the introductory programming and problem solving mo
 ## What This Repository Contains
 
 ### Design
-- Code Style Checker ERG.png - the entity relationship diagram for the minimum viable product to design the layout of the program.
+- Code Style Checker ERD.png - the entity relationship diagram for the minimum viable product to design the layout of the program.
 - Code Style Checker Interface.png - the original interface design for the application, which of course is subject to change.
 
 ### Program
