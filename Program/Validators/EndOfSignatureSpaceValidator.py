@@ -21,23 +21,23 @@ class EndOfSignatureSpaceValidator:
             "error_count": 0
         }
 
-        signature_end_regex = r"[a-zA-Z0-9\=\( ]+\){"
-        word_end_regex = r"[A-Za-z]+{"
+        bracket_end_regex = r"[a-zA-Z0-9\=\( ]+\){"
+        word_ending_regex = r"[A-Za-z]+{"
         line_number = 0
 
         for line in lines:
             # Check signatures with a )
-            signatures_on_line = re.findall(signature_end_regex, line)
+            bracket_end_on_line = re.findall(bracket_end_regex, line)
             # Check else signatures
-            word_end_on_line = re.findall(word_end_regex, line)
+            word_end_on_line = re.findall(word_ending_regex, line)
             line_number += 1
             
             # Check signatures with a ) first
-            if len(signatures_on_line) != 0:
-                for signature in signatures_on_line:
+            if len(bracket_end_on_line) != 0:
+                for bracket_end_entry in bracket_end_on_line:
                     error_dictionary["error_list"] \
                         .append("End Of Signature Error: A space is needed in"
-                                + f" '{signature.strip()}'" 
+                                + f" '{bracket_end_entry.strip()}'" 
                                 + " between the ) and {.")
                     error_dictionary["error_count"] += 1
 
