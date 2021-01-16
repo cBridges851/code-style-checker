@@ -11,6 +11,7 @@ This is my final project for the introductory programming and problem solving mo
 #### Validators
 All the validators that the program uses. These include:  
 - \_\_pycache__ - contains Python 3 code that has been compiled and is ready to be executed.
+- EndOfSignatureSpaceValidator.py - checks to see if there is a space between the closing curved bracket or word and opening curly bracket in a signature.
 - EqualsSpaceMissingValidator.py - checks to see if there are any missing spaces before or after an equals sign.
 - NumberOfClassesValidator.py - checks how many classes there are in a JavaScript file. There should be a maximum of 1.
 - ValidatorRunner.py - runs the validators in this folder.
