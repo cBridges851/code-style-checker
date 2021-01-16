@@ -21,14 +21,14 @@ class EndOfSignatureSpaceValidator:
         }
 
         signature_end_regex = r"[a-zA-Z0-9\=\( ]+\){"
-        else_regex = r"else{"
+        word_end_regex = r"[A-Za-z]+{"
         line_number = 0
 
         for line in lines:
             # Check signatures with a )
             signatures_on_line = re.findall(signature_end_regex, line)
             # Check else signatures
-            else_on_line = re.findall(else_regex, line)
+            word_end_on_line = re.findall(word_end_regex, line)
             line_number += 1
             
             # Check signatures with a ) first
@@ -41,18 +41,13 @@ class EndOfSignatureSpaceValidator:
                     error_dictionary["error_count"] += 1
 
             # Then check signatures with an else
-            if len(else_on_line) != 0:
-                if len(else_on_line) == 1:
+            if len(word_end_on_line) != 0:
+                for word_end_entry in word_end_on_line:
                     error_dictionary["error_list"] \
                         .append("End Of Signature Error: A space is needed"
-                                + " between the else and {"
-                                + f" in 1 place on line {line_number}")
-                else:
-                    error_dictionary["error_list"] \
-                        .append("End Of Signature Error: A space is needed"
-                                + " between the else and {"
-                                + f" in {len(else_on_line)} places on line {line_number}")
+                                + " between the word and {"
+                                + f" in {word_end_entry}")
 
-                error_dictionary["error_count"] += len(else_on_line)
+                error_dictionary["error_count"] += len(word_end_on_line)
 
         return error_dictionary

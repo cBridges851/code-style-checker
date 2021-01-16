@@ -20,7 +20,7 @@ class VarUseValidator:
             "error_count": 0
         }
 
-        var_regex = "var\\b"
+        var_regex = r"var\b"
         line_number = 0
 
         for line in lines:

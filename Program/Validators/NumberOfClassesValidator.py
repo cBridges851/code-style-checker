@@ -21,7 +21,7 @@ class NumberOfClassesValidator:
             "error_count": 0
         }
 
-        class_regex = "(?<=class )[A-Za-z]+"
+        class_regex = r"(?<=class )[A-Za-z]+"
         line_number = 0
         number_of_classes = 0
 
