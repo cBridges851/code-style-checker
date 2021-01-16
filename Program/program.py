@@ -5,6 +5,7 @@ class Program:
     """
         The entry class for the application.
     """
+
     def main(self):
         """
             The method that is the entry point of the whole application.
