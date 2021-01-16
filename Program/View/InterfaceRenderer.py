@@ -2,13 +2,15 @@ import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 from Validators.ValidatorRunner import ValidatorRunner
 
+
 class InterfaceRenderer:
     """
         Renders the user interface and displays it.
     """
+
     def __init__(self):
         """
-            Initialises the InterfaceRenderer class. It sets up the root and defines 
+            Initialises the InterfaceRenderer class. It sets up the root and defines
             variables used in multiple places in the rendering.
         """
         self.root = tk.Tk()
@@ -39,8 +41,11 @@ class InterfaceRenderer:
         """
         if self.code_box.get("1.0", tk.END) == "\n":
             self.code_box.insert(tk.END, "Input JavaScript Code Here...")
-    
+
     def output_results(self):
+        """
+            Outputs the results of the validators onto the output box.
+        """
         # Allow the output box to be edited
         self.output_box.configure(state="normal")
         self.output_box.delete("1.0", tk.END)
@@ -56,17 +61,19 @@ class InterfaceRenderer:
             # 1 or more errors
             self.output_box.configure(bg="#450000")
 
+            # Checks number of errors so correct grammar can be used
             if validator_results["error_count"] == 1:
                 starting_error_message = "There is 1 style error in this code: \n\n"
             else:
                 starting_error_message = f"There are {validator_results['error_count']} style errors in this code: \n\n"
-            
+
             self.output_box.insert(tk.END, starting_error_message)
 
             for category in validator_results["error_list"]:
                 for error in category:
                     self.output_box.insert(tk.END, f"{error}\n")
-                
+
+                # Insert a new line if there are values in the category
                 if len(category) != 0:
                     self.output_box.insert(tk.END, "\n")
 
@@ -81,8 +88,8 @@ class InterfaceRenderer:
         self.root.title("Chrispy Code Style Checker")
         self.root.resizable(False, False)
         self.root.configure(
-            bg=self.primary_bg_colour, 
-            padx=10, 
+            bg=self.primary_bg_colour,
+            padx=10,
             pady=10
         )
 
@@ -92,7 +99,7 @@ class InterfaceRenderer:
         """
         self.title_label.configure(
             text="Chrispy Code Style Checker",
-            bg=self.primary_bg_colour, 
+            bg=self.primary_bg_colour,
             fg="#FFFFFF",
             font=("Helvetica 26 bold")
         )
@@ -106,16 +113,20 @@ class InterfaceRenderer:
             width=self.box_width,
             height=15,
             bg=self.secondary_bg_colour,
-            fg=self.box_font_colour, 
+            fg=self.box_font_colour,
             font=self.box_font
         )
         self.insert_placeholder()
+
+        # Event for when the box is clicked on
         self.code_box.bind(
-            "<Button 1>", 
+            "<Button 1>",
             lambda event: self.clear_code_box()
         )
+
+        # Event for when the box does not have a focus on it
         self.code_box.bind(
-            "<FocusOut>", 
+            "<FocusOut>",
             lambda event: self.insert_placeholder()
         )
         self.code_box.grid(row=1, column=0)
@@ -124,13 +135,12 @@ class InterfaceRenderer:
         """
             Creates the button that will trigger the code to be validated.
         """
-        
         self.validate_button.configure(
             text="VALIDATE!",
-            width=41, 
-            font=("Helvetica 14"), 
+            width=41,
+            font=("Helvetica 14"),
             bg="#7A7A7A",
-            command= self.output_results
+            command=self.output_results
         )
         self.validate_button.grid(row=2, column=0, pady=10)
 
