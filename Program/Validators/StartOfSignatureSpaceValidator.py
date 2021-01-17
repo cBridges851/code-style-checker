@@ -4,7 +4,7 @@ import re
 class StartOfSignatureSpaceValidator:
     """
         The validator that is used to check that there is a space between a while/for,
-        if/else if/else and ()
+        if/else if/switch and ()
     """
 
     def validate(self, lines):
