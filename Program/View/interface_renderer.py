@@ -92,10 +92,14 @@ class InterfaceRenderer:
             padx=10,
             pady=10
         )
+
+    def open_file(self):
+        print("Open File")
     
     def render_menu_bar(self):
         menu_bar = tk.Menu(self.root)
         file_menu = tk.Menu(menu_bar, tearoff=0)
+        file_menu.add_command(label="Open File", command=self.open_file())
         file_menu.add_command(label="Exit", command=self.root.quit)
         menu_bar.add_cascade(label="File", menu=file_menu)
         self.root.config(menu=menu_bar)
