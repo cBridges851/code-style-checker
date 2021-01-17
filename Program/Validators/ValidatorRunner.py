@@ -1,6 +1,7 @@
 from Validators.EndOfSignatureSpaceValidator import EndOfSignatureSpaceValidator
 from Validators.EqualsSpaceMissingValidator import EqualsSpaceMissingValidator
 from Validators.NumberOfClassesValidator import NumberOfClassesValidator
+from Validators.StartOfSignatureSpaceValidator import StartOfSignatureSpaceValidator
 from Validators.VarUseValidator import VarUseValidator
 
 
@@ -26,10 +27,11 @@ class ValidatorRunner:
 
         # List of all the validators
         validators = [
+            StartOfSignatureSpaceValidator(),
+            EndOfSignatureSpaceValidator(),
             EqualsSpaceMissingValidator(),
-            VarUseValidator(),
             NumberOfClassesValidator(),
-            EndOfSignatureSpaceValidator()
+            VarUseValidator()
         ]
 
         # Calls each validator and runs them
