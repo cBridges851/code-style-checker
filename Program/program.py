@@ -1,4 +1,4 @@
-from View.InterfaceRenderer import InterfaceRenderer
+from View.interface_renderer import InterfaceRenderer
 
 
 class Program:

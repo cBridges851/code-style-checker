@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from Validators.ValidatorRunner import ValidatorRunner
+from Validators.validator_runner import ValidatorRunner
 
 
 class InterfaceRenderer:
