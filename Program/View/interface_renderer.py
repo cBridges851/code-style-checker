@@ -92,6 +92,13 @@ class InterfaceRenderer:
             padx=10,
             pady=10
         )
+    
+    def render_menu_bar(self):
+        menu_bar = tk.Menu(self.root)
+        file_menu = tk.Menu(menu_bar, tearoff=0)
+        file_menu.add_command(label="Exit", command=self.root.quit)
+        menu_bar.add_cascade(label="File", menu=file_menu)
+        self.root.config(menu=menu_bar)
 
     def render_title(self):
         """
@@ -165,6 +172,7 @@ class InterfaceRenderer:
             that build up each component.
         """
         self.render_window()
+        self.render_menu_bar()
         self.render_title()
         self.render_code_input_box()
         self.render_validate_button()
