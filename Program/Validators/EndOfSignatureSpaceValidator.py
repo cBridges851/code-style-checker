@@ -38,7 +38,8 @@ class EndOfSignatureSpaceValidator:
                     error_dictionary["error_list"] \
                         .append("End Of Signature Error: A space is needed in"
                                 + f" '{bracket_end_entry.strip()}'" 
-                                + " between the ) and {.")
+                                + " between the ) and {" 
+                                + f" on line {line_number}.")
                     error_dictionary["error_count"] += 1
 
             # Then check signatures with an else
