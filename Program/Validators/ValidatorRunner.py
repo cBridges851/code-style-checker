@@ -27,10 +27,10 @@ class ValidatorRunner:
 
         # List of all the validators
         validators = [
+            StartOfSignatureSpaceValidator(),
             EndOfSignatureSpaceValidator(),
             EqualsSpaceMissingValidator(),
             NumberOfClassesValidator(),
-            StartOfSignatureSpaceValidator(),
             VarUseValidator()
         ]
 
