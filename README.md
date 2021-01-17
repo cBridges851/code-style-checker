@@ -14,6 +14,7 @@ All the validators that the program uses. These include:
 - EndOfSignatureSpaceValidator.py - checks to see if there is a space between the closing curved bracket or word and opening curly bracket in a signature.
 - EqualsSpaceMissingValidator.py - checks to see if there are any missing spaces before or after an equals sign.
 - NumberOfClassesValidator.py - checks how many classes there are in a JavaScript file. There should be a maximum of 1.
+- StartOfSignatureSpaceValidator.py - checks to see if there is a space after a loop or conditional statement keyword in the signature.
 - ValidatorRunner.py - runs the validators in this folder.
 - VarUseValidator.py - checks to see if there are any occurrences of `var` in the code. `let` or `const` should be used instead.
 - \_\_init__.py - treats the project as a package, so classes can be imported despite the file structure.
