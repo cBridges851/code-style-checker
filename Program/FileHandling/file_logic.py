@@ -6,4 +6,9 @@ class FileLogic:
             initialdir="C:/", 
             title="Select a file", 
             filetypes=(("JavaScript files", ".js"), ("All Files", "*.*"))
-            )
+        )
+
+        js_file = open(root.filename)
+        lines = js_file.readlines()
+
+        return lines

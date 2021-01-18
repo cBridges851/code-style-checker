@@ -95,7 +95,13 @@ class InterfaceRenderer:
         )
 
     def display_file_contents(self):
-        FileLogic().open_file(self.root)
+        lines = FileLogic().open_file(self.root)
+        # Clear output box
+        self.code_box.delete("1.0", tk.END)
+
+        # Output lines into input box.
+        for line in lines:
+            self.code_box.insert(tk.END, line)
     
     def render_menu_bar(self):
         menu_bar = tk.Menu(self.root)
