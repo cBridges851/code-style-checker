@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 from Validators.validator_runner import ValidatorRunner
+from FileHandling.file_logic import FileLogic
 
 
 class InterfaceRenderer:
@@ -93,13 +94,13 @@ class InterfaceRenderer:
             pady=10
         )
 
-    def open_file(self):
-        print("Open File")
+    def display_file_contents(self):
+        FileLogic().open_file(self.root)
     
     def render_menu_bar(self):
         menu_bar = tk.Menu(self.root)
         file_menu = tk.Menu(menu_bar, tearoff=0)
-        file_menu.add_command(label="Open File", command=self.open_file())
+        file_menu.add_command(label="Open File", command=self.display_file_contents)
         file_menu.add_command(label="Exit", command=self.root.quit)
         menu_bar.add_cascade(label="File", menu=file_menu)
         self.root.config(menu=menu_bar)
