@@ -14,7 +14,7 @@ class FileLogic:
                 lines: list, contains all the lines that were in the file.
         """
         root.filename = filedialog.askopenfilename(
-            initialdir="C:/", 
+            initialdir="shell:MyComputerFolder", 
             title="Select a file", 
             filetypes=(("JavaScript files", ".js"), ("All Files", "*.*"))
         )
