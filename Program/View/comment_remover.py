@@ -7,21 +7,43 @@ class CommentRemover:
         so they are not part of the validation.
     """
 
-    def remove_comments(self, original_lines):
+    def remove_comments(self, lines):
         """
             The method that removes the comments.
             Args:
-                original_lines: list, the list of lines that is the entirity 
+                lines: list, the list of lines that is the entirity 
                 of the inputted code.
         """
-        lines_without_comments = []
+        
+        is_multiline_comment = False
         # Remove single line comments
-        for line in original_lines:
-            comment = re.findall("//.+", line)
-            if len(comment) != 0:
-                line = line.replace(comment[0], "")
-            lines_without_comments.append(line)
+        for i in range(len(lines)):
+            single_line_comment = re.findall(r"//.+", lines[i])
+            multiline_comment_start = re.findall(r"/*", lines[i])
+            multiline_comment_finish = re.findall(r"*/", lines[i])
 
-        return lines_without_comments
+            if len(single_line_comment) != 0:
+                lines[i] = lines[i].replace(single_line_comment[0], "")
+            
+            # Remove multiline comments
+            if not is_multiline_comment:
+                print("Not a multiline comment")
+                # Check if multiline started
+                if len(multiline_comment_start) != 0:
+                    print("Multiline has started")
+                    is_multiline_comment = True
+            
+                if len(multiline_comment_finish) != 0:
+                    print("Multiline has ended")
+                    is_multiline_comment = False
+            else:
+                if len(multiline_comment_finish) != 0:
+                    print("Multiline has ended")
+                    is_multiline_comment = False
+                else:
+                    print("Multiline is still occurring")
 
-CommentRemover().remove_comments(["let x = 0; // The program", "console.log('Hello')"])
+        print(lines)
+        return lines
+
+CommentRemover().remove_comments(["/* asdisadaidadsj", "console.log('Hello')"])
