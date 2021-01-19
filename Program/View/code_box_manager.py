@@ -22,6 +22,13 @@ class CodeBoxManager:
             code_box.insert(tk.END, "Input JavaScript Code Here...")
 
     def display_file_contents(self, root, code_box):
+        """
+            Displays all the lines that are in a JavaScript file that has been
+            imported via the file explorer.
+            Args:
+                root: Tk, the root of the application
+                code_box: ScrolledText, the box where the code will be inserted into.
+        """
         lines = FileLogic().open_file(root)
 
         if lines != None:
