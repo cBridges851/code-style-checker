@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from Validators.validator_runner import ValidatorRunner
+from View.code_box_manager import CodeBoxManager
+from View.outputter import Outputter
 
 
 class InterfaceRenderer:
@@ -24,62 +25,6 @@ class InterfaceRenderer:
         self.box_width = 50
         self.box_font = ("Consolas 14")
 
-    def clear_code_box(self):
-        """
-            Removes placeholder text from the box where the user inputs their code.
-            Args:
-                code_box: ScrolledText, the box where the user inputs their code.
-        """
-        if self.code_box.get("1.0", tk.END) == "Input JavaScript Code Here...\n":
-            self.code_box.delete("1.0", tk.END)
-
-    def insert_placeholder(self):
-        """
-            Puts in the placeholder if there is nothing in the box.
-            Args:
-                code_box: ScrolledText, the box where the user inputs their code.
-        """
-        if self.code_box.get("1.0", tk.END) == "\n":
-            self.code_box.insert(tk.END, "Input JavaScript Code Here...")
-
-    def output_results(self):
-        """
-            Outputs the results of the validators onto the output box.
-        """
-        # Allow the output box to be edited
-        self.output_box.configure(state="normal")
-        self.output_box.delete("1.0", tk.END)
-        code_box_text = self.code_box.get("1.0", tk.END)
-        code_box_lines = code_box_text.split("\n")
-        validator_results = ValidatorRunner().run_validators(code_box_lines)
-
-        if validator_results["error_count"] == 0:
-            # No errors
-            self.output_box.configure(bg="#004512")
-            self.output_box.insert(tk.END, "There are no style errors in the code!")
-        else:
-            # 1 or more errors
-            self.output_box.configure(bg="#450000")
-
-            # Checks number of errors so correct grammar can be used
-            if validator_results["error_count"] == 1:
-                starting_error_message = "There is 1 style error in this code: \n\n"
-            else:
-                starting_error_message = f"There are {validator_results['error_count']} style errors in this code: \n\n"
-
-            self.output_box.insert(tk.END, starting_error_message)
-
-            for category in validator_results["error_list"]:
-                for error in category:
-                    self.output_box.insert(tk.END, f"{error}\n")
-
-                # Insert a new line if there are values in the category
-                if len(category) != 0:
-                    self.output_box.insert(tk.END, "\n")
-
-        # User cannot edit the output box after the message has been inserted
-        self.output_box.configure(state="disabled")
-
     def render_window(self):
         """
             Creates the root window for the application.
@@ -93,6 +38,16 @@ class InterfaceRenderer:
             pady=10
         )
 
+    def render_menu_bar(self):
+        menu_bar = tk.Menu(self.root)
+        file_menu = tk.Menu(menu_bar, tearoff=0)
+        file_menu.add_command(
+            label="Open File",
+            command=lambda: CodeBoxManager().display_file_contents(self.root, self.code_box))
+        file_menu.add_command(label="Exit", command=self.root.quit)
+        menu_bar.add_cascade(label="File", menu=file_menu)
+        self.root.config(menu=menu_bar)
+
     def render_title(self):
         """
             Creates the title of the application.
@@ -105,7 +60,7 @@ class InterfaceRenderer:
         )
         self.title_label.grid(row=0, column=0)
 
-    def render_code_input_box(self):
+    def render_code_box(self):
         """
             Creates the box that will be used to input code.
         """
@@ -116,18 +71,18 @@ class InterfaceRenderer:
             fg=self.box_font_colour,
             font=self.box_font
         )
-        self.insert_placeholder()
+        CodeBoxManager().insert_placeholder(self.root, self.code_box)
 
         # Event for when the box is clicked on
         self.code_box.bind(
             "<Button 1>",
-            lambda event: self.clear_code_box()
+            lambda event: CodeBoxManager().clear_code_box(self.code_box)
         )
 
         # Event for when the box does not have a focus on it
         self.code_box.bind(
             "<FocusOut>",
-            lambda event: self.insert_placeholder()
+            lambda event: CodeBoxManager().insert_placeholder(self.root, self.code_box)
         )
         self.code_box.grid(row=1, column=0)
 
@@ -140,7 +95,7 @@ class InterfaceRenderer:
             width=41,
             font=("Helvetica 14"),
             bg="#7A7A7A",
-            command=self.output_results
+            command=lambda: Outputter().output_results(self.code_box, self.output_box)
         )
         self.validate_button.grid(row=2, column=0, pady=10)
 
@@ -165,8 +120,9 @@ class InterfaceRenderer:
             that build up each component.
         """
         self.render_window()
+        self.render_menu_bar()
         self.render_title()
-        self.render_code_input_box()
+        self.render_code_box()
         self.render_validate_button()
         self.render_output_box()
         self.root.mainloop()
