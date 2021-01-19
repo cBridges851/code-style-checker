@@ -19,7 +19,9 @@ class FileLogic:
             filetypes=(("JavaScript files", ".js"), ("All Files", "*.*"))
         )
 
-        js_file = open(root.filename)
-        lines = js_file.readlines()
+        if root.filename != "":
+            js_file = open(root.filename)
+            lines = js_file.readlines()
+            return lines
 
-        return lines
+        return None
