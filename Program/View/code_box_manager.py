@@ -31,7 +31,7 @@ class CodeBoxManager:
         """
         lines = FileLogic().open_file(root)
 
-        if lines != None:
+        if lines is not None:
             # Clear output box
             code_box.delete("1.0", tk.END)
 
