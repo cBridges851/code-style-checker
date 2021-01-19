@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from FileHandling.file_logic import FileLogic
+from View.code_box_manager import CodeBoxManager
 from View.outputter import Outputter
 
 class InterfaceRenderer:
@@ -23,36 +23,7 @@ class InterfaceRenderer:
         self.box_font_colour = "#C2C0C0"
         self.box_width = 50
         self.box_font = ("Consolas 14")
-
-    def clear_code_box(self):
-        """
-            Removes placeholder text from the box where the user inputs their code.
-            Args:
-                code_box: ScrolledText, the box where the user inputs their code.
-        """
-        if self.code_box.get("1.0", tk.END) == "Input JavaScript Code Here...\n":
-            self.code_box.delete("1.0", tk.END)
-
-    def insert_placeholder(self):
-        """
-            Puts in the placeholder if there is nothing in the box.
-            Args:
-                code_box: ScrolledText, the box where the user inputs their code.
-        """
-        if self.code_box.get("1.0", tk.END) == "\n":
-            self.code_box.insert(tk.END, "Input JavaScript Code Here...")
-
-    def display_file_contents(self):
-        lines = FileLogic().open_file(self.root)
-
-        if lines != None:
-            # Clear output box
-            self.code_box.delete("1.0", tk.END)
-
-            # Output lines into input box.
-            for line in lines:
-                self.code_box.insert(tk.END, line)
-
+    
     def render_window(self):
         """
             Creates the root window for the application.
@@ -70,7 +41,9 @@ class InterfaceRenderer:
     def render_menu_bar(self):
         menu_bar = tk.Menu(self.root)
         file_menu = tk.Menu(menu_bar, tearoff=0)
-        file_menu.add_command(label="Open File", command=self.display_file_contents)
+        file_menu.add_command(
+            label="Open File", 
+            command=lambda: CodeBoxManager().display_file_contents(self.root, self.code_box))
         file_menu.add_command(label="Exit", command=self.root.quit)
         menu_bar.add_cascade(label="File", menu=file_menu)
         self.root.config(menu=menu_bar)
@@ -98,18 +71,18 @@ class InterfaceRenderer:
             fg=self.box_font_colour,
             font=self.box_font
         )
-        self.insert_placeholder()
+        CodeBoxManager().insert_placeholder(self.root, self.code_box)
 
         # Event for when the box is clicked on
         self.code_box.bind(
             "<Button 1>",
-            lambda event: self.clear_code_box()
+            lambda event: CodeBoxManager().clear_code_box(self.code_box)
         )
 
         # Event for when the box does not have a focus on it
         self.code_box.bind(
             "<FocusOut>",
-            lambda event: self.insert_placeholder()
+            lambda event: CodeBoxManager().insert_placeholder(self.root, self.code_box)
         )
         self.code_box.grid(row=1, column=0)
 
