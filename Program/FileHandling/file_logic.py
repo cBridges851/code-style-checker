@@ -16,9 +16,9 @@ class FileLogic:
         root.filename = filedialog.askopenfilename(
             initialdir="shell:MyComputerFolder", 
             title="Select a file", 
-            filetypes=(("JavaScript files", ".js"), ("All Files", "*.*"))
+            filetypes=(("JavaScript files", ".js"),)
         )
-
+        
         if root.filename != "":
             js_file = open(root.filename)
             lines = js_file.readlines()
