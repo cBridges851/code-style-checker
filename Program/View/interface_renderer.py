@@ -3,6 +3,7 @@ from tkinter.scrolledtext import ScrolledText
 from View.code_box_manager import CodeBoxManager
 from View.outputter import Outputter
 
+
 class InterfaceRenderer:
     """
         Renders the user interface and displays it.
@@ -23,7 +24,7 @@ class InterfaceRenderer:
         self.box_font_colour = "#C2C0C0"
         self.box_width = 50
         self.box_font = ("Consolas 14")
-    
+
     def render_window(self):
         """
             Creates the root window for the application.
@@ -37,12 +38,11 @@ class InterfaceRenderer:
             pady=10
         )
 
-    
     def render_menu_bar(self):
         menu_bar = tk.Menu(self.root)
         file_menu = tk.Menu(menu_bar, tearoff=0)
         file_menu.add_command(
-            label="Open File", 
+            label="Open File",
             command=lambda: CodeBoxManager().display_file_contents(self.root, self.code_box))
         file_menu.add_command(label="Exit", command=self.root.quit)
         menu_bar.add_cascade(label="File", menu=file_menu)
