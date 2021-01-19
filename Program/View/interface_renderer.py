@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
-from Validators.validator_runner import ValidatorRunner
 from FileHandling.file_logic import FileLogic
-
+from View.outputter import Outputter
 
 class InterfaceRenderer:
     """
@@ -43,43 +42,16 @@ class InterfaceRenderer:
         if self.code_box.get("1.0", tk.END) == "\n":
             self.code_box.insert(tk.END, "Input JavaScript Code Here...")
 
-    def output_results(self):
-        """
-            Outputs the results of the validators onto the output box.
-        """
-        # Allow the output box to be edited
-        self.output_box.configure(state="normal")
-        self.output_box.delete("1.0", tk.END)
-        code_box_text = self.code_box.get("1.0", tk.END)
-        code_box_lines = code_box_text.split("\n")
-        validator_results = ValidatorRunner().run_validators(code_box_lines)
+    def display_file_contents(self):
+        lines = FileLogic().open_file(self.root)
 
-        if validator_results["error_count"] == 0:
-            # No errors
-            self.output_box.configure(bg="#004512")
-            self.output_box.insert(tk.END, "There are no style errors in the code!")
-        else:
-            # 1 or more errors
-            self.output_box.configure(bg="#450000")
+        if lines != None:
+            # Clear output box
+            self.code_box.delete("1.0", tk.END)
 
-            # Checks number of errors so correct grammar can be used
-            if validator_results["error_count"] == 1:
-                starting_error_message = "There is 1 style error in this code: \n\n"
-            else:
-                starting_error_message = f"There are {validator_results['error_count']} style errors in this code: \n\n"
-
-            self.output_box.insert(tk.END, starting_error_message)
-
-            for category in validator_results["error_list"]:
-                for error in category:
-                    self.output_box.insert(tk.END, f"{error}\n")
-
-                # Insert a new line if there are values in the category
-                if len(category) != 0:
-                    self.output_box.insert(tk.END, "\n")
-
-        # User cannot edit the output box after the message has been inserted
-        self.output_box.configure(state="disabled")
+            # Output lines into input box.
+            for line in lines:
+                self.code_box.insert(tk.END, line)
 
     def render_window(self):
         """
@@ -94,16 +66,6 @@ class InterfaceRenderer:
             pady=10
         )
 
-    def display_file_contents(self):
-        lines = FileLogic().open_file(self.root)
-
-        if lines != None:
-            # Clear output box
-            self.code_box.delete("1.0", tk.END)
-
-            # Output lines into input box.
-            for line in lines:
-                self.code_box.insert(tk.END, line)
     
     def render_menu_bar(self):
         menu_bar = tk.Menu(self.root)
@@ -125,7 +87,7 @@ class InterfaceRenderer:
         )
         self.title_label.grid(row=0, column=0)
 
-    def render_code_input_box(self):
+    def render_code_box(self):
         """
             Creates the box that will be used to input code.
         """
@@ -160,7 +122,7 @@ class InterfaceRenderer:
             width=41,
             font=("Helvetica 14"),
             bg="#7A7A7A",
-            command=self.output_results
+            command=lambda: Outputter().output_results(self.code_box, self.output_box)
         )
         self.validate_button.grid(row=2, column=0, pady=10)
 
@@ -187,7 +149,7 @@ class InterfaceRenderer:
         self.render_window()
         self.render_menu_bar()
         self.render_title()
-        self.render_code_input_box()
+        self.render_code_box()
         self.render_validate_button()
         self.render_output_box()
         self.root.mainloop()
