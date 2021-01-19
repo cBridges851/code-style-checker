@@ -13,6 +13,8 @@ class CommentRemover:
             Args:
                 lines: list, the list of lines that is the entirity 
                 of the inputted code.
+            Returns:
+                lines: list, the list of lines with the comments removed.
         """
         
         is_multiline_comment = False
