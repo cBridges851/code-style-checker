@@ -1,11 +1,12 @@
 import tkinter as tk
 from Validators.validator_runner import ValidatorRunner
 
+
 class Outputter:
     """
         The class that is responsible for outputting results.
     """
-    
+
     def output_results(self, code_box, output_box):
         """
             Outputs the results of the validators onto the output box.
