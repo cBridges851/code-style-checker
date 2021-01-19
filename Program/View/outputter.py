@@ -1,4 +1,5 @@
 import tkinter as tk
+from View.comment_remover import CommentRemover
 from Validators.validator_runner import ValidatorRunner
 
 
@@ -16,6 +17,7 @@ class Outputter:
         output_box.delete("1.0", tk.END)
         code_box_text = code_box.get("1.0", tk.END)
         code_box_lines = code_box_text.split("\n")
+        code_box_lines = CommentRemover().remove_comments(code_box_lines)
         validator_results = ValidatorRunner().run_validators(code_box_lines)
 
         if validator_results["error_count"] == 0:

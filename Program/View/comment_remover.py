@@ -18,12 +18,12 @@ class CommentRemover:
         """
         
         is_multiline_comment = False
-        
+
         # Remove single line comments
         for i in range(len(lines)):
             single_line_comment = re.findall(r"//.+", lines[i])
-            multiline_comment_start = re.findall(r"/\*.+", lines[i])
-            multiline_comment_finish = re.findall(r".+\*/", lines[i])
+            multiline_comment_start = re.findall(r"/\*(.+)?", lines[i])
+            multiline_comment_finish = re.findall(r"(.+)?\*/", lines[i])
 
             # Removes single line comments
             if len(single_line_comment) != 0:
