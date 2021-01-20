@@ -15,12 +15,13 @@ This is my final project for the introductory programming and problem solving mo
 #### Validators
 All the validators that the program uses. These include:  
 - \_\_pycache__ - contains Python 3 code that has been compiled and is ready to be executed.
-- EndOfSignatureSpaceValidator.py - checks to see if there is a space between the closing curved bracket or word and opening curly bracket in a signature.
-- EqualsSpaceMissingValidator.py - checks to see if there are any missing spaces before or after an equals sign.
-- NumberOfClassesValidator.py - checks how many classes there are in a JavaScript file. There should be a maximum of 1.
-- StartOfSignatureSpaceValidator.py - checks to see if there is a space after a loop or conditional statement keyword in the signature.
-- ValidatorRunner.py - runs the validators in this folder.
-- VarUseValidator.py - checks to see if there are any occurrences of `var` in the code. `let` or `const` should be used instead.
+- conditional_statement_quantity_on_line_validator - makes sure there is no more than one conditional statement signature per line.
+- end_of_signature_space_validator.py - checks to see if there is a space between the closing curved bracket or word and opening curly bracket in a signature.
+- equals_space_missing_validator.py - checks to see if there are any missing spaces before or after an equals sign.
+- number_of_classes_validator.py - checks how many classes there are in a JavaScript file. There should be a maximum of 1.
+- start_of_signature_space_validator.py - checks to see if there is a space after a loop or conditional statement keyword in the signature.
+- validator_runner.py - runs the validators in this folder.
+- var_use_validator.py - checks to see if there are any occurrences of `var` in the code. `let` or `const` should be used instead.
 - \_\_init__.py - treats the project as a package, so classes can be imported despite the file structure.
 #### View
 - code_box_manager.py - responsible for edits to the box where the code is inputted. This includes displaying the code that is in a file, and inserting and removing the placeholder text.
