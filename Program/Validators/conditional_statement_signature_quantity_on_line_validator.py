@@ -1,7 +1,7 @@
 import re
 
 
-class ConditionalStatementQuantityOnLineValidator:
+class ConditionalStatementSignatureQuantityOnLineValidator:
     """
         The validator that is used to check that there is one
         if statement on a line

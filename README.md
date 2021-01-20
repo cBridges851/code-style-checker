@@ -15,7 +15,7 @@ This is my final project for the introductory programming and problem solving mo
 #### Validators
 All the validators that the program uses. These include:  
 - \_\_pycache__ - contains Python 3 code that has been compiled and is ready to be executed.
-- conditional_statement_quantity_on_line_validator - makes sure there is no more than one conditional statement signature per line.
+- conditional_statement_signature_quantity_on_line_validator - makes sure there is no more than one conditional statement signature per line.
 - end_of_signature_space_validator.py - checks to see if there is a space between the closing curved bracket or word and opening curly bracket in a signature.
 - equals_space_missing_validator.py - checks to see if there are any missing spaces before or after an equals sign.
 - number_of_classes_validator.py - checks how many classes there are in a JavaScript file. There should be a maximum of 1.
