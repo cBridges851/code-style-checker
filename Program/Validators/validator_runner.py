@@ -1,3 +1,4 @@
+from Validators.conditional_statement_quantity_on_line_validator import ConditionalStatementQuantityOnLineValidator
 from Validators.end_of_signature_space_validator import EndOfSignatureSpaceValidator
 from Validators.equals_space_missing_validator import EqualsSpaceMissingValidator
 from Validators.number_of_classes_validator import NumberOfClassesValidator
@@ -27,9 +28,10 @@ class ValidatorRunner:
 
         # List of all the validators
         validators = [
+            ConditionalStatementQuantityOnLineValidator(),
             EqualsSpaceMissingValidator(),
-            VarUseValidator(),
             NumberOfClassesValidator(),
+            VarUseValidator(),
             StartOfSignatureSpaceValidator(),
             EndOfSignatureSpaceValidator()
         ]
