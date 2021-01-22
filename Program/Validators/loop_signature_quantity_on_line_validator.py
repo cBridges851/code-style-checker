@@ -3,7 +3,7 @@ import re
 
 class LoopSignatureQuantityOnLineValidator:
     """
-        The validator that is used to check that there is one
+        The validator that is used to check that there is no more than one
         loop signature on a line
     """
 
