@@ -1,10 +1,10 @@
 import re
 
 
-class ConditionalStatementSignatureQuantityOnLineValidator:
+class LoopSignatureQuantityOnLineValidator:
     """
-        The validator that is used to check that there is
-        no more than one conditional statement signature on a line.
+        The validator that is used to check that there is no more than one
+        loop signature on a line
     """
 
     def validate(self, lines):
@@ -23,16 +23,16 @@ class ConditionalStatementSignatureQuantityOnLineValidator:
         }
 
         line_number = 0
-        conditional_statement_regex = r"(if|else if|else)"
+        loop_regex = r"(while|for)"
 
         for line in lines:
             line_number += 1
 
             # Makes sure there is only one conditional statement keyword on a line
-            if len(re.findall(conditional_statement_regex, line)) > 1:
+            if len(re.findall(loop_regex, line)) > 1:
                 error_dictionary["error_list"] \
-                    .append("Conditional Statement Signatures On Line Quantity Error:"
-                            + " There are too many conditional statement"
+                    .append("Loop Signatures On Line Quantity Error:"
+                            + " There are too many loop"
                             + f" signatures on line {line_number}")
                 error_dictionary["error_count"] += 1
 
