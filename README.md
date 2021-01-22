@@ -18,6 +18,7 @@ All the validators that the program uses. These include:
 - conditional_statement_signature_quantity_on_line_validator - makes sure there is no more than one conditional statement signature per line.
 - end_of_signature_space_validator.py - checks to see if there is a space between the closing curved bracket or word and opening curly bracket in a signature.
 - equals_space_missing_validator.py - checks to see if there are any missing spaces before or after an equals sign.
+- loop_signature_quantity_on_line_validator.py - makes sure there is no more than one loop signature on a line.
 - number_of_classes_validator.py - checks how many classes there are in a JavaScript file. There should be a maximum of 1.
 - start_of_signature_space_validator.py - checks to see if there is a space after a loop or conditional statement keyword in the signature.
 - validator_runner.py - runs the validators in this folder.
