@@ -4,7 +4,7 @@ import re
 class LoopSignatureQuantityOnLineValidator:
     """
         The validator that is used to check that there is one
-        if statement on a line
+        loop signature on a line
     """
 
     def validate(self, lines):
