@@ -3,8 +3,8 @@ import re
 
 class ConditionalStatementSignatureQuantityOnLineValidator:
     """
-        The validator that is used to check that there is one
-        if statement on a line
+        The validator that is used to check that there is
+        no more than one conditional statement signature on a line.
     """
 
     def validate(self, lines):
