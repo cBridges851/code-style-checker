@@ -32,6 +32,7 @@ class EqualsSpaceMissingValidator:
         # Initial line number
         line_number = 0
 
+        # Loops through every line in the code
         for line in lines:
             # Increments the line the user is on
             line_number += 1

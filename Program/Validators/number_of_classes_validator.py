@@ -29,6 +29,7 @@ class NumberOfClassesValidator:
         # Initial line number
         line_number = 0
 
+        # Loops through every line in the code
         for line in lines:
             # Looks for classes on the line
             classes_on_line = re.findall(class_regex, line)

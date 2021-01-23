@@ -30,6 +30,7 @@ class EndOfSignatureSpaceValidator:
         # Initial line number
         line_number = 0
 
+        # Loops through every line in the code
         for line in lines:
             # Check signatures with a )
             bracket_end_on_line = re.findall(bracket_end_regex, line)
