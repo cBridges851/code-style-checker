@@ -48,7 +48,7 @@ All the validators that the program uses. These include:
 The files for Git to ignore when pushing to the remote repository.
 
 ### README.md
-What you are reading right now! This aims to give you all the information you need to know about this project.
+What you are reading right now! This aims to give you all the information you need to know about this project. The images used in this README are in the READMEImages folder.
 
 ## Python Features Used
 - Variables  
