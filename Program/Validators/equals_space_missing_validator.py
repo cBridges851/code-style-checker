@@ -24,8 +24,8 @@ class EqualsSpaceMissingValidator:
         }
 
         # Regex that checks for a lack of a space on the left of an equals sign 
-        # (unless it is another equals sign for ==)
-        left_space_regex = r"[^ =]="
+        # (unless it is another operator for mathematical operations or comparisons)
+        left_space_regex = r"[^ \+\-\*\/\!=]="
         # Regex that checks for a lack of a space on the right of an equals sign 
         # (unless it is another equals sign for ==)
         right_space_regex = r"=[^ =]"
