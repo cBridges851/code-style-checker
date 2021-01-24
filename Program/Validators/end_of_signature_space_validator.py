@@ -41,7 +41,7 @@ class EndOfSignatureSpaceValidator:
             
             # Check signatures with a ) first
             if len(bracket_end_on_line) != 0:
-                # Loops through the number of occurrences of a lack of a space between a (
+                # Loops through the number of occurrences of a lack of a space between a )
                 # and { on a line and adds an error to the dictionary for each occurrence
                 for bracket_end_entry in bracket_end_on_line:
                     error_dictionary["error_list"] \
