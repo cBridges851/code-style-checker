@@ -16,8 +16,8 @@ class FileLogic:
         """
         # Gets the filename
         root.filename = filedialog.askopenfilename(
-            initialdir="shell:MyComputerFolder",
-            title="Select a file",
+            initialdir="shell:MyComputerFolder",  # Opens in My Documents or the last place the user was
+            title="Select a file",  # Title for the file dialog window
             filetypes=(("JavaScript files", ".js"),)  # Only JavaScript files can be inputted
         )
 
@@ -27,4 +27,5 @@ class FileLogic:
             lines = js_file.readlines()
             return lines
 
+        # Returns None if a file was not selected
         return None

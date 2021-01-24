@@ -22,6 +22,8 @@ class ValidatorRunner:
                 error_dictionary: dictionary, contains the errors and
                 how many there are.
         """
+
+        # Initial value for the error dictionary
         error_dictionary = {
             "error_list": [],
             "error_count": 0
@@ -45,4 +47,5 @@ class ValidatorRunner:
             error_dictionary["error_list"].append(validator_results["error_list"])
             error_dictionary["error_count"] += validator_results["error_count"]
 
-        return(error_dictionary)
+        # Returns a dictionary with all the errors from all the validators
+        return error_dictionary
