@@ -1,6 +1,18 @@
 # code-style-checker
 This is my final project for the introductory programming and problem solving module at university.
 
+## How To Use
+- Run program.py either in your text editor or executing `python program.py` in a terminal that is in the same location as the file.
+- Input code by either:
+    - Selecting "File" on the menu bar and selecting "Open File", leading to the file explorer being opened and you can select a JavaScript file.
+    ![Open File](READMEImages/open_file.png)
+    - Typing/copying and pasting code into the code input box.
+    ![Input Box](READMEImages/input_box.png)
+- Press the validate button!
+![Validate Button](READMEImages/validate_button.png)
+- See the results in the output box.
+![Output](READMEImages/output.png)
+
 ## What This Repository Contains
 
 ### Design
